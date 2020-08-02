@@ -4,9 +4,11 @@
 int Monedas();
 int Inicia();//para saber si inicia jugando la computadora o el jugador
 void Comienzo(int inicia,int cantmonedas);//Empieza el juego
+int CantMonedasQueRetiraLaPc();
 
 int min,max;
 main(){
+	printf("WARCOIN\n=========\n");
 	int CMonedas,PlayerOPc;
 	printf("Ingrese la cantidad minima de monedas que se pueden retirar: ");
 	scanf("%d",&min);
@@ -33,7 +35,7 @@ int Inicia(){
 }
 void Comienzo(int juega,int cantmonedas){
 	if(juega==1){
-		printf("\nInicia el jugador");
+		printf("\nInicia el usuario");
 	}else printf("\nInicia la computadora");
 	
 	while(cantmonedas>=min){
@@ -57,4 +59,18 @@ void Comienzo(int juega,int cantmonedas){
 			juega=1;
 		}
 	}
+	if(juega==1){
+		printf("\nLA COMPUTADORA GANO!! puntaje obtenido es: 0");
+	}else{
+		printf("\nGANASTE!! puntaje obtenido: 5");
+	}
+	printf("\nGracias por jugar ");
+	system("pause");
+}
+
+int CantMonedasQueRetiraLaPc(){
+	int nro_azar; 
+  	srand(time(0));
+	nro_azar=min+rand()%(max-min+1);
+	return nro_azar;
 }
