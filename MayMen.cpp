@@ -1,38 +1,17 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include <ctime>
-void azar(int &numeroaleatorio);
+void azar(int &numeroaleatorio);//devuelve un numero aleatorio
 void Pausa();
 void Reglas();
-bool MayMen(int Num,int NAleatorio,int &rango1,int &rango2);
+bool MayMen(int Num,int NAleatorio,int &rango1,int &rango2);//aqui se revisa si el numero ingresado es mayor o menor al numero aleatorio
+void IntentosyFinal(int Naleatorio);//aqui se desarrolla el juego en si, los 10 intentos y el final
 main(){
-	int Naleatorio, num_ingresado;
-	int rango1=1,rango2=999;
-	int intentoganador;
-	bool Gano=false;
-	
+	int Naleatorio;
 	azar(Naleatorio);
-	printf("\t\t*********************************\n\t\t*****     Mayor y Menor     *****\n\t\t*********************************");
 	Reglas();
 	Pausa();
-	for(int i=1;i<=10;i++){
-		printf("Intento %d: ",i);
-		scanf("%d",&num_ingresado);
-		Gano=MayMen(num_ingresado,Naleatorio,rango1,rango2);
-		if(Gano==true){
-			intentoganador=i;
-			printf("\n--------------------------------------");
-			printf("\n  Acertaste!... Puntaje obtenido: %d",11-i);
-			printf("\n--------------------------------------");
-			i=11;
-			printf("\n***El Numero secreto es: %d",Naleatorio);
-		}
-	}
-	if(intentoganador>10){
-		printf("\n----------------------------------------");
-		printf("\n  Perdiste, El numero secreto era: %d",Naleatorio);
-		printf("\n----------------------------------------");
-	}
+	IntentosyFinal(Naleatorio);
 	printf("\n\nGracias por jugar. ");
 	Pausa();
 }
@@ -41,7 +20,6 @@ void azar(int &numeroaleatorio){
   	srand(time(0));
 	nro_azar=1+rand()%999;
 	numeroaleatorio=nro_azar;
-	printf("%d",numeroaleatorio);
 }
 void Pausa(){
 	printf("\n\n");
@@ -49,6 +27,7 @@ void Pausa(){
 	system("cls");
 }
 void Reglas(){
+	printf("\t\t*********************************\n\t\t*****     Mayor y Menor     *****\n\t\t*********************************");
 	printf("\n\n\t   Este juego consiste en adivinar un numero que esta \n\tentre 1 y 999 denominado numero secreto, el cual elegire \n");
 	printf("\t de manera aleatoria. En cada intento debes ingresar un \n\tnumero hasta adivinarlo, tienes 10 intentos, mucha suerte.\n");
 }
@@ -66,4 +45,29 @@ bool MayMen(int Num,int NAleatorio,int &rango1,int &rango2){
 			if(Num==NAleatorio){
 				return true;
 			}
+}
+void IntentosyFinal(int Naleatorio){
+	int num_ingresado,i;
+	int rango1=1,rango2=999;
+	int intentoganador;
+	bool Gano=false;
+	
+		for(int i=1;i<=10;i++){
+		printf("Intento %d: ",i);
+		scanf("%d",&num_ingresado);
+		Gano=MayMen(num_ingresado,Naleatorio,rango1,rango2);
+		if(Gano==true){
+			intentoganador=i;
+			printf("\n--------------------------------------");
+			printf("\n  Acertaste!... Puntaje obtenido: %d",11-i);
+			printf("\n--------------------------------------");
+			i=11;
+			printf("\n***El Numero secreto es: %d",Naleatorio);
+		}
+	}
+	if(i>10){
+		printf("\n----------------------------------------");
+		printf("\n  Perdiste, El numero secreto era: %d",Naleatorio);
+		printf("\n----------------------------------------");
+	}
 }
