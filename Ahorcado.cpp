@@ -5,6 +5,7 @@ int Carga(char P[25]);//Cargar la palabra para adivinar
 void PalabraAAdivinar(int cantletras,char P[25]);//muestra la palabra oculta y mmientras adivine va mostrando las letras
 void Verificacion(char Palabraparaadivinar[25],int CaracteresAdivinados[25],char letraingresada,int &muneco);//Verifica si la letra ingresada coincide con la palabra a adivinar
 void EstadoDelMuneco(int Muneco);
+void Perdio();
 main(){
 	printf("AHORCADO\n========");
 	int cantletras;
@@ -42,7 +43,7 @@ int Carga(char P[25]){
 
 void PalabraAAdivinar(int cantletras,char P[25]){
 	int J=0;
-	bool Gano=false;
+	bool Gano=true;
 	char LetraIngresada;
 	int CantLetrasAdivinadas[25];//vector que indica con un 1 la posicion de el caracter adivinado
 	int LetrasAdivinadas[25];//Aqui se guardan las letras que ya fueron adivinadas
@@ -54,21 +55,35 @@ void PalabraAAdivinar(int cantletras,char P[25]){
 	}
 	
 	do{
-		printf("\nJugada #%d",J+1);
+		Gano=true;
+		printf("\n-------------------------------------------\n");
+		printf("Jugada #%d",J+1);
 		printf("\nIngrese una letra: ");
 		scanf("%c",&LetraIngresada);
+		fflush(stdin);//para que no haya problemas al escanear datos tipo char
 		Verificacion(P,CantLetrasAdivinadas,LetraIngresada,muneco);
 		printf("Resultado de la jugada #%d \nPalabra a adivinar: ",J+1);
 		for(int i=0;i<cantletras;i++){
 			if(CantLetrasAdivinadas[i]==1 || LetrasAdivinadas[i]==1){
 				printf("%c ",P[i]);
 				LetrasAdivinadas[i]=1;
-			}else printf("_ ");
+			}else{
+				printf("_ ");
+				Gano=false;
+			}
 		}
 		EstadoDelMuneco(muneco);
+		J++;
+		//final perdedor
+		if(muneco>10){
+			Perdio();
+		}
 		
 	}while(Gano==false);
-	
+	//final ganador
+	int Puntos=50-(2*muneco);
+	printf("\n\n=========================\nHAS GANADO LA PARTIDA!!\nEl puntaje obtenido es: %d Puntos.\n\n\n",Puntos);
+	system("pause");
 }
 
 void Verificacion(char Palabraparaadivinar[25],int CaracteresAdivinados[25],char letraingresada,int &muneco){
@@ -115,4 +130,9 @@ void EstadoDelMuneco(int muneco){
 	if(muneco>=10){
 		printf("pie derecho. ");
 	}
+}
+void Perdio(){
+	printf("\n\n=========================\nHAS PERDIDO.\nPuntaje obtenido: 0\n\n\n");
+	exit(0);
+	system("pause");
 }
