@@ -1,13 +1,16 @@
-#include<stdio.h>//prueba leo
+#include<stdio.h>
 #include<stdlib.h>
 #include <ctime>
+//repositorios
 int Monedas();
 int Inicia();//para saber si inicia jugando la computadora o el jugador
 void Comienzo(int inicia,int cantmonedas);//Empieza el juego
 int CantMonedasQueRetiraLaPc();
 void Reglas();
 
+//variables globales 
 int min,max;
+
 main(){
 	Reglas();
 	printf("WARCOIN\n=========\n");
@@ -86,11 +89,11 @@ int CantMonedasQueRetiraLaPc(){
 	nro_azar=min+rand()%(max-min+1);
 	return nro_azar;
 }
-void Reglas(){//Consiste en una pila de monedas, de la cual el jugador y la computadora van sacando monedas hasta que ya no quedan m·s en la pila. El que vacÌa la pila de monedas es quien gana el juego
+void Reglas(){//Consiste en una pila de monedas, de la cual el jugador y la computadora van sacando monedas hasta que ya no quedan m√°s en la pila. El que vac√≠a la pila de monedas es quien gana el juego
 	printf("WARCOIN\n=========\n");
 	printf("\nEl juego Consiste en una pila de monedas, de la cual el jugador y la computadora");
-	printf("\n\tvan sacando monedas hasta que ya no quedan m·s en la pila.");
-	printf("\n\t El que vacÌa la pila de monedas es quien gana el juego.\n\n");
+	printf("\n\tvan sacando monedas hasta que ya no quedan m√°s en la pila.");
+	printf("\n\t El que vac√≠a la pila de monedas es quien gana el juego.\n\n");
 	system("pause");
 	system("cls");
 }
