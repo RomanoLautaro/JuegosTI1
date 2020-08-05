@@ -1,4 +1,4 @@
-#include<stdio.h>
+#include<stdio.h>//prueba lautaro
 #include<stdlib.h>
 #include <ctype.h>
 int Carga(char P[25]);//Cargar la palabra para adivinar
