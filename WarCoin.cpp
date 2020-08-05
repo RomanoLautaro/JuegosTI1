@@ -1,4 +1,4 @@
-#include<stdio.h>
+#include<stdio.h>//prueba leo
 #include<stdlib.h>
 #include <ctime>
 int Monedas();
