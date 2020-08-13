@@ -3,7 +3,7 @@
 #include <ctype.h>
 int Carga();//Cargar la palabra para adivinar
 void PalabraAAdivinar();//muestra la palabra oculta y mmientras adivine va mostrando las letras
-void Verificacion(int CaracteresAdivinados[25],char letraingresada,int &muneco);//Verifica si la letra ingresada coincide con la palabra a adivinar
+void Verificacion(int CaracteresAdivinados[25],char letraingresada,int &muneco, char LetrasIngresadasQueNoFormanParte[100],int &H);//Verifica si la letra ingresada coincide con la palabra a adivinar
 void EstadoDelMuneco(int Muneco);
 void Perdio();
 void MostrarPalabra();
@@ -49,11 +49,16 @@ int Carga(){
 void PalabraAAdivinar(){
 	char i=0;
 	int J=0;
+	
+	//la bariable H son la cantidad de letras que no forman parte de la palabra de juego
+	int H;
+	
 	bool Gano=true;
 	char LetraIngresada;
 	int CantLetrasAdivinadas[25];//vector que indica con un 1 la posicion de el caracter adivinado
 	int LetrasAdivinadas[25];//Aqui se guardan las letras que ya fueron adivinadas
 	int muneco=0;
+	char LetrasIngresadasQueNoFormanParte[100];
 	printf("AHORCADO\n========\n\n");
 	printf("Palabra a adivinar: ");
 	for(int i=0;i<cantletras;i++){
@@ -85,7 +90,7 @@ void PalabraAAdivinar(){
  		 }
 		//--------------------------------------------------------------
 		if(Bandera!=0){
-			Verificacion(CantLetrasAdivinadas,LetraIngresada,muneco);
+			Verificacion(CantLetrasAdivinadas,LetraIngresada,muneco,LetrasIngresadasQueNoFormanParte,H);
 			printf("Resultado de la jugada #%d \nPalabra a adivinar: ",J+1);
 			for(int i=0;i<cantletras;i++){
 				if(CantLetrasAdivinadas[i]==1 || LetrasAdivinadas[i]==1){
@@ -97,6 +102,11 @@ void PalabraAAdivinar(){
 				}
 			}
 			EstadoDelMuneco(muneco);
+			printf("\nLas letras que no forman parte de la palabra son: ");
+			for(int i=0;i<H;i++){
+				printf("%c, ",LetrasIngresadasQueNoFormanParte[i]);
+			}
+			
 			J++;
 			//final perdedor
 			if(muneco>=10){
@@ -110,49 +120,63 @@ void PalabraAAdivinar(){
 	system("pause");
 }
 
-void Verificacion(int CaracteresAdivinados[25],char letraingresada,int &muneco){
+void Verificacion(int CaracteresAdivinados[25],char letraingresada,int &muneco, char LetrasIngresadasQueNoFormanParte[100],int &H){ //la bariable H son la cantidad de letras que no forman parte de la palabra de juego
 	int B=0;
+	
 	for(int i=0;i<25;i++){
 		if(Palabra[i]==letraingresada){
 			CaracteresAdivinados[i]=1;
 			B=1;
-		}else CaracteresAdivinados[i]=0;
+		}
+		else{
+			CaracteresAdivinados[i]=0;
+		}
 	}
 	if(B==0){
-		muneco++;
+		int bandera2=0;
+		for(int i=0;i<H;i++){
+			if(letraingresada==LetrasIngresadasQueNoFormanParte[i]){
+				bandera2=1;
+			}
+		}
+		if(bandera2!=1){
+			LetrasIngresadasQueNoFormanParte[H]=letraingresada;
+			H++;
+			muneco++;
+		}
 	}
 }
 void EstadoDelMuneco(int muneco){
 	printf("\nEstado del muneco: ");
 	if(muneco>=1){
-		printf("cabeza, ");
+		printf("cabeza");
 	}
 	if(muneco>=2){
-		printf("tronco, ");
+		printf(", tronco");
 	}
 	if(muneco>=3){
-		printf("brazo izquierdo, ");
+		printf(", brazo izquierdo");
 	}
 	if(muneco>=4){
-		printf("brazo derecho, ");
+		printf(", brazo derecho");
 	}
 	if(muneco>=5){
-		printf("pierna izquierda, ");
+		printf(", pierna izquierda");
 	}
 	if(muneco>=6){
-		printf("pierna derecha, ");
+		printf(", pierna derecha");
 	}
 	if(muneco>=7){
-		printf("mano izquierda, ");
+		printf(", mano izquierda");
 	}
 	if(muneco>=8){
-		printf("mano derecha, ");
+		printf(", mano derecha");
 	}
 	if(muneco>=9){
-		printf("pie Izquierdo, ");
+		printf(", pie Izquierdo");
 	}
 	if(muneco>=10){
-		printf("pie derecho. ");
+		printf(", pie derecho.");
 	}
 }
 void Perdio(){
