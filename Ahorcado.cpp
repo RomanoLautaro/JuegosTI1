@@ -59,20 +59,29 @@ void PalabraAAdivinar(){
 	int LetrasAdivinadas[25];//Aqui se guardan las letras que ya fueron adivinadas
 	int muneco=0;
 	char LetrasIngresadasQueNoFormanParte[100];
-	printf("AHORCADO\n========\n\n");
-	printf("Palabra a adivinar: ");
-	for(int i=0;i<cantletras;i++){
-		printf("_ ");
-	}
-	
 	do{
+		printf("AHORCADO\n========\n\n");
+		printf("Palabra a adivinar: ");
+		//impresion de la palabra oculta
+		for(int i=0;i<cantletras;i++){
+			if(CantLetrasAdivinadas[i]==1 || LetrasAdivinadas[i]==1){
+				printf("%c ",Palabra[i]);
+				LetrasAdivinadas[i]=1;
+			}else{
+				printf("_ ");
+				Gano=false;
+			}
+		}
+		
 		int Bandera=1;
 		Gano=true;
-		printf("\n-------------------------------------------\n");
+		printf("\n===========================================\n");
 		printf("Jugada #%d",J+1);
 		printf("\nIngrese una letra: ");
 		scanf("%c",&LetraIngresada);
 		fflush(stdin);//para que no haya problemas al escanear datos tipo char
+		printf("-------------------------------------------\n");
+		
 		
 		//variable para verificar si la letra ingresada es un valor alfabetico
 		char aux=LetraIngresada;
@@ -106,6 +115,9 @@ void PalabraAAdivinar(){
 			for(int i=0;i<H;i++){
 				printf("%c, ",LetrasIngresadasQueNoFormanParte[i]);
 			}
+			printf("\n\n");
+			system("pause");
+			system("cls");
 			
 			J++;
 			//final perdedor
@@ -116,7 +128,7 @@ void PalabraAAdivinar(){
 	}while(Gano==false);
 	//final ganador
 	int Puntos=50-(2*muneco);
-	printf("\n\n=========================\nHAS GANADO LA PARTIDA!!\nEl puntaje obtenido es: %d Puntos.\n\n\n",Puntos);
+	printf("AHORCADO\n=========================\nHAS GANADO LA PARTIDA!!\nEl puntaje obtenido es: %d Puntos.\n\n\n",Puntos);
 	system("pause");
 }
 
@@ -149,38 +161,38 @@ void Verificacion(int CaracteresAdivinados[25],char letraingresada,int &muneco, 
 void EstadoDelMuneco(int muneco){
 	printf("\nEstado del muneco: ");
 	if(muneco>=1){
-		printf("cabeza");
+		printf("cabeza ");
 	}
 	if(muneco>=2){
-		printf(", tronco");
+		printf("- tronco ");
 	}
 	if(muneco>=3){
-		printf(", brazo izquierdo");
+		printf("- brazo izquierdo ");
 	}
 	if(muneco>=4){
-		printf(", brazo derecho");
+		printf("- brazo derecho ");
 	}
 	if(muneco>=5){
-		printf(", pierna izquierda");
+		printf("- pierna izquierda ");
 	}
 	if(muneco>=6){
-		printf(", pierna derecha");
+		printf("- pierna derecha ");
 	}
 	if(muneco>=7){
-		printf(", mano izquierda");
+		printf("- mano izquierda ");
 	}
 	if(muneco>=8){
-		printf(", mano derecha");
+		printf("- mano derecha ");
 	}
 	if(muneco>=9){
-		printf(", pie Izquierdo");
+		printf("- pie Izquierdo ");
 	}
 	if(muneco>=10){
-		printf(", pie derecho.");
+		printf("- pie derecho. ");
 	}
 }
 void Perdio(){
-	printf("\n\n=========================\nHAS PERDIDO.\nPuntaje obtenido: 0\n\n\n");
+	printf("AHORCADO\n=========================\nHAS PERDIDO.\nPuntaje obtenido: 0\n\n\n");
 	
 	//se muestra la palabra que debia adivinarse
 	MostrarPalabra();
