@@ -67,6 +67,7 @@ void IntentosyFinal(int Naleatorio){
 	int rango1=1,rango2=999;
 	int intentoganador;
 	bool Gano=false;
+	int perdio=1;//cuanoo este contador llega a 11 perdio el juego
 	
 	for(int i=1;i<=10;i++){
 		printf(">Intento %d: ",i);
@@ -77,11 +78,12 @@ void IntentosyFinal(int Naleatorio){
 			printf("\n--------------------------------------");
 			printf("\n  Acertaste!... Puntaje obtenido: %d",11-i);
 			printf("\n--------------------------------------");
-			i=11;
+			i=12;
 			printf("\n***El Numero secreto es: %d",Naleatorio);
 		}
+		perdio++;
 	}
-	if(i>10){
+	if(perdio==11){
 		printf("\n----------------------------------------");
 		printf("\n  Perdiste, El numero secreto era: %d",Naleatorio);
 		printf("\n----------------------------------------");
