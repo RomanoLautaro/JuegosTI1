@@ -1,8 +1,8 @@
-#include<stdio.h>//prueba lautaro
+#include<stdio.h>
 #include<stdlib.h>
 #include <ctype.h>
 int Carga();//Cargar la palabra para adivinar
-void PalabraAAdivinar();//muestra la palabra oculta y mmientras adivine va mostrando las letras
+void PalabraAAdivinar();//muestra la palabra oculta y mientras adivine va mostrando las letras
 void Verificacion(int CaracteresAdivinados[25],char letraingresada,int &muneco, char LetrasIngresadasQueNoFormanParte[100],int &H);//Verifica si la letra ingresada coincide con la palabra a adivinar
 void EstadoDelMuneco(int Muneco);
 void Perdio();
