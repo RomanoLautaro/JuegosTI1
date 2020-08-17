@@ -18,14 +18,15 @@ main(){
     printf("\n____________________________________________\n");
     system("Pause");
     system ("cls");
+    printf("Ingrese un numero de 4 cifras e intenta adivinar el numero secreto. \n");
     do{
         aleatorio=(rand()%9000)+1000;
         separarNumero(aleatorio,a1,a2,a3,a4);
     }while(a1==a2 || a1==a3 || a1==a4 || a2==a3 || a2==a4 || a3==a4||
-    a1==0 || a2==0 || a3==0 || a4==0);
+	a1==0 || a2==0 || a3==0 || a4==0);
 
     for(int i=1; i<11; i++){
-        printf("\n\nIntento numero *%d*: ", i);
+        printf("\n\nIntento numero *%d/10*: ", i);
         scanf("%d",&numIngresado);
         if(numIngresado>=1000 && numIngresado<10000){ //1000^9999
             separarNumero(numIngresado,n1,n2,n3,n4);
@@ -77,6 +78,8 @@ main(){
             i--;
         }
     }
+    printf("\n\n");
+    system("pause");
 }
 
 void separarNumero(int n, int &a1, int &a2, int &a3, int &a4){
