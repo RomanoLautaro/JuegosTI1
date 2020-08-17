@@ -11,7 +11,6 @@ void IntentosyFinal(int Naleatorio);//aqui se desarrolla el juego en si, los 10 
 
 //funcion principal
 main(){
-	
 	//variable donde se almacenara el numero aleatorio que creo la computadora
 	int Naleatorio;
 	azar(Naleatorio);
@@ -67,7 +66,6 @@ void IntentosyFinal(int Naleatorio){
 	int rango1=1,rango2=999;
 	int intentoganador;
 	bool Gano=false;
-	int perdio=1;//cuanoo este contador llega a 11 perdio el juego
 	
 	for(int i=1;i<=10;i++){
 		printf(">Intento %d: ",i);
@@ -81,9 +79,8 @@ void IntentosyFinal(int Naleatorio){
 			i=12;
 			printf("\n***El Numero secreto es: %d",Naleatorio);
 		}
-		perdio++;
 	}
-	if(perdio==11){
+	if(Gano==false){
 		printf("\n----------------------------------------");
 		printf("\n  Perdiste, El numero secreto era: %d",Naleatorio);
 		printf("\n----------------------------------------");
